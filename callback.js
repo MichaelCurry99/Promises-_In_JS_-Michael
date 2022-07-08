@@ -6,7 +6,7 @@ const posts = [
 function getPosts(){
    setTimeout(function()  {
     let output = '';
-    posts.fotEach((post) => {
+    posts.forEach((post) => {
 output += `<li>${post.title}</li>`;
     });
      document.body.innerHTML = output;
@@ -14,12 +14,25 @@ output += `<li>${post.title}</li>`;
 }
 
 function createPost(post) {
+return new Promise((resolove, reject) => {
   setTimeout(() => {
-  posts.push(post);
-},2000);
+    posts.push(post);
+    
+    const error = false;
+  // callBack();
+    if(!error) {
+      resolove();
+    }
+    else{
+      reject('Error: Something went wrong');
+    }
+  },2000);
+});
+
+  
 
 }
 
-getPosts();
+// getPosts();
 
-createPost({title: 'Post Three', body: 'This is post three' })
+createPost({title: 'Post Three', body: 'This is post three' }, getPosts); then(getPosts);
